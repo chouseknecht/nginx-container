@@ -33,7 +33,7 @@
 - name: Link stdout and stderr to nginx log system
   file:
     path: "{{ item.path }}" 
-    src: "{{ item.source }}" 
+    src: "{{ item.src }}" 
     state: link
   with_items:
     - path: /var/log/nginx/access.log
