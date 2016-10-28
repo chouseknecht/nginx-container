@@ -30,7 +30,7 @@
     group: root
     mode: 0775
 
-- name: Set permissions on /var/cache/nginx/client_temp
+- name: Set permissions on /var/cache/nginx
   file:
     path: /var/cache/nginx/client_temp
     state: directory
