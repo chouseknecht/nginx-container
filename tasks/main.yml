@@ -68,3 +68,12 @@
     group: root
     mode: 0664
 
+# Nginx default.conf
+- name: Copy default.conf
+  template: 
+    src: default.conf.j2
+    dest: "{{ nginx_vhost_path }}/default.conf"
+    owner: root
+    group: root
+    mode: 0664
+

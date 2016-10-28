@@ -1,6 +1,8 @@
 ---
 
 # The name of the nginx apt/yum package to install.
+nginx_default_port: 80
+nginx_default_server_name: "0.0.0.0"
 nginx_package_name: "nginx"
 nginx_worker_processes: "1"
 nginx_worker_connections: "1024"
