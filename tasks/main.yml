@@ -58,36 +58,28 @@
     mode: 0775 
     recurse: yes
 
-- name: Link stdout and stderr to nginx log system
+- name: Get rid of the defaults dropped into /etc/nginx/conf.d
+  file: 
+    path: /etc/nginx/conf.d
+    state: absent
+
+- name: Link nginx log system to stderr and stdout
   file:
     path: "{{ item.path }}" 
     src: "{{ item.src }}" 
     state: link
     force: yes
   with_items:
-    - path: /var/log/nginx/access.log
+    - path: "{{ nginx_access_log }}" 
       src: /dev/stdout 
-    - path: /var/log/nginx/error.log
+    - path: "{{ nginx_error_log }}"
       src: /dev/stderr
 
-# Vhost configuration.
-- include: vhosts.yml
-
-# Nginx setup.
-- name: Copy nginx configuration
+- name: Copy a default nginx configuration
   template:
     src: nginx.conf.j2
-    dest: "{{ nginx_conf_file_path }}"
-    owner: nginx 
-    group: root
-    mode: 0664
-
-# Nginx default.conf
-- name: Copy default.conf
-  template: 
-    src: default.conf.j2
-    dest: "{{ nginx_vhost_path }}/default.conf"
-    owner: root
+    dest: /etc/nginx/nginx.conf
+    owner: root 
     group: root
     mode: 0664
 

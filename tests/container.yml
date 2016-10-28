@@ -1,0 +1,11 @@
+version: '1'
+services:
+  nginx:
+    image: centos:7
+    ports:
+    - 8888:80
+    - 4430:443
+    user: nginx
+    working_dir: /
+    command: [nginx]
+registries: {}
