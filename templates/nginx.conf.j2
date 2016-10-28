@@ -8,9 +8,9 @@ worker_processes  {{ nginx_worker_processes }};
 events {
     worker_connections  {{ nginx_worker_connections }};
 {%if nginx_multi_accept or nginx_multi_accept == 'on' %}
-    multi_accept on 
+    multi_accept on;
 {% else %}
-    multi_accept off 
+    multi_accept off; 
 {% endif %}
 }
 
