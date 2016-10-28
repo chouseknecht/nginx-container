@@ -30,6 +30,20 @@
     group: root
     mode: 0775
 
+- name: Remove pid file, if it exists
+  file:
+    path: "{{ nginx_pidfile }}"
+    state: absent
+
+- name: Set permissions on pid file directory
+  file:
+    path: "{{ nginx_pidfile | dirname }}"
+    state: directory 
+    owner: nginx
+    group: root
+    mode: 0775
+    recurse: yes 
+   
 - name: Remove /var/cache/nginx, if it exists
   file:
     path: /var/cache/nginx
