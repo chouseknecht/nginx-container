@@ -33,6 +33,7 @@
 - name: Set permissions on /var/cache/nginx/client_temp
   file:
     path: /var/cache/nginx/client_temp
+    state: directory
     owner: nginx
     group: root
     mode: 0775 
