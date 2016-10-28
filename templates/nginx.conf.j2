@@ -7,7 +7,7 @@ worker_processes  {{ nginx_worker_processes }};
 
 events {
     worker_connections  {{ nginx_worker_connections }};
-{%if nginx_multi_accept or nginx_multi_accept == 'on' %}
+{%if nginx_multi_accept %}
     multi_accept on;
 {% else %}
     multi_accept off; 
@@ -32,9 +32,21 @@ http {
 
     access_log  {{ nginx_access_log }};
 
-    sendfile        {{ nginx_sendfile }};
-    tcp_nopush      {{ nginx_tcp_nopush }};
-    tcp_nodelay     {{ nginx_tcp_nodelay }};
+{% if nginx_sendfile %}    
+    sendfile        on;
+{% else %}
+    sendfile        off;
+{% endif %}
+{% if nginx_tcp_nopush %}    
+    tcp_nopush      on;
+{% else %}
+    tcp_nopush      off;
+{% endif %}
+{% if nginx_tcp_nodelay %}    
+    tcp_nodelay     on;
+{% else %}
+    tcp_nodelay     off;
+{% endif %}
 
     keepalive_timeout  {{ nginx_keepalive_timeout }};
     keepalive_requests {{ nginx_keepalive_requests }};
