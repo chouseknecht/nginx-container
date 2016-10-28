@@ -4,3 +4,6 @@ nginx:
      - 80:80
      - 443:443
    user: nginx
+   working_dir: /
+   # command: ["nginx", "-g", "daemon off;"]
+   command: ["nginx"]

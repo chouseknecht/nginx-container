@@ -1,4 +1,4 @@
-user  nginx;
+# user  nginx;
 
 error_log  {{ nginx_error_log }};
 pid        {{ nginx_pidfile }};
@@ -7,7 +7,11 @@ worker_processes  {{ nginx_worker_processes }};
 
 events {
     worker_connections  {{ nginx_worker_connections }};
-    multi_accept {{ nginx_multi_accept }};
+{%if nginx_multi_accept or nginx_multi_accept == 'on' %}
+    multi_accept on 
+{% else %}
+    multi_accept off 
+{% endif %}
 }
 
 {% if nginx_extra_conf_options %}

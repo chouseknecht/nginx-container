@@ -15,6 +15,21 @@
     state: installed
     enablerepo: nginx
 
+- name: Create nginx user
+  user:
+    name: nginx
+    uid: 1000
+    group: root
+    createhome: no
+
+- name: Set permissions on /var/log/nginx
+  file:
+    path: /var/log/nginx
+    state: directory
+    owner: root
+    group: root
+    mode: 0775
+
 # Vhost configuration.
 - include: vhosts.yml
 
