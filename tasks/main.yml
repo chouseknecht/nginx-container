@@ -30,6 +30,14 @@
     group: root
     mode: 0775
 
+- name: Set permissions on /var/cache/nginx/client_temp
+  file:
+    path: /var/cache/nginx/client_temp
+    owner: nginx
+    group: root
+    mode: 0775 
+    recurse: yes
+
 - name: Remove log files
   file:
     path: "{{ item }}"
