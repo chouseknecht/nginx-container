@@ -4,8 +4,6 @@
 nginx_default_port: 8000
 nginx_default_server_name: "0.0.0.0"
 nginx_package_name: "nginx"
-nginx_worker_connections: "1024"
-nginx_multi_accept: "off"
 nginx_error_log: "/var/log/nginx/error.log warn"
 # nginx_access_log: "/var/log/nginx/access.log main buffer=16k"
 nginx_access_log: "/var/log/nginx/access.log"
