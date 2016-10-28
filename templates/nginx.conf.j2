@@ -3,7 +3,8 @@
 error_log  {{ nginx_error_log }};
 pid        {{ nginx_pidfile }};
 
-worker_processes  {{ nginx_worker_processes }};
+worker_processes 1;
+daemon off;
 
 events {
     worker_connections  {{ nginx_worker_connections }};
