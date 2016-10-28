@@ -37,9 +37,9 @@
 
 - name: Set permissions on pid file directory
   file:
-    path: "{{ nginx_pidfile | dirname }}"
+    path: /run
     state: directory 
-    owner: nginx
+    owner: root 
     group: root
     mode: 0775
     recurse: yes 
