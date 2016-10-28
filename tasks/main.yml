@@ -1,0 +1,29 @@
+---
+# tasks file for nginx-container
+
+- name: Enable nginx repo.
+  template:
+    src: nginx.repo.j2
+    dest: /etc/yum.repos.d/nginx.repo
+    owner: root
+    group: root
+    mode: 0664
+
+- name: Intsall nginx.
+  yum:
+    name: "{{ nginx_package_name }}"
+    state: installed
+    enablerepo: nginx
+
+# Vhost configuration.
+- include: vhosts.yml
+
+# Nginx setup.
+- name: Copy nginx configuration in place.
+  template:
+    src: nginx.conf.j2
+    dest: "{{ nginx_conf_file_path }}"
+    owner: nginx 
+    group: root
+    mode: 0664
+
