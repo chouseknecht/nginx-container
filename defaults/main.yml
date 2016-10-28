@@ -33,7 +33,11 @@ nginx_extra_http_options: ""
 
 nginx_remove_default_vhost: false
 nginx_vhosts_filename: "vhosts.conf"
-nginx_vhosts: []
+nginx_vhosts: 
+- listen: "80 default_server"
+      server_name: "0.0.0.0"
+      root: "/var/www"
+      index: "index.html index.htm"
 # Example vhost below, showing all available options:
 # - listen: "80 default_server" # default: "80 default_server"
 #   server_name: "example.com" # default: N/A

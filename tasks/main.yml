@@ -30,6 +30,14 @@
     group: root
     mode: 0775
 
+- name: Set permissions on /var/www
+  file:
+    path: /var/www
+    state: directory 
+    owner: nginx
+    group: root
+    mode: 0555
+
 # Vhost configuration.
 - include: vhosts.yml
 
