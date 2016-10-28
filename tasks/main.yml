@@ -1,7 +1,7 @@
 ---
 # tasks file for nginx-container
 
-- name: Enable nginx repo.
+- name: Enable nginx repo
   template:
     src: nginx.repo.j2
     dest: /etc/yum.repos.d/nginx.repo
@@ -9,7 +9,7 @@
     group: root
     mode: 0664
 
-- name: Intsall nginx.
+- name: Intsall nginx
   yum:
     name: "{{ nginx_package_name }}"
     state: installed
@@ -30,19 +30,22 @@
     group: root
     mode: 0775
 
-- name: Set permissions on /var/www
+- name: Link stdout and stderr to nginx log system
   file:
-    path: /var/www
-    state: directory 
-    owner: nginx
-    group: root
-    mode: 0555
+    path: "{{ item.path }}" 
+    src: "{{ item.source }}" 
+    state: link
+  with_items:
+    - path: /var/log/nginx/access.log
+      src: /dev/stdout 
+    - path: /var/log/nginx/error.log
+      src: /dev/stderr
 
 # Vhost configuration.
 - include: vhosts.yml
 
 # Nginx setup.
-- name: Copy nginx configuration in place.
+- name: Copy nginx configuration
   template:
     src: nginx.conf.j2
     dest: "{{ nginx_conf_file_path }}"
