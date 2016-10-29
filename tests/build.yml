@@ -1,0 +1,25 @@
+- name: Build the project  
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+
+  - name: Remove the ansible directory
+    file:
+      path: ./ansible
+      state: absent
+
+  - name: Init the ansible directory 
+    command: ansible-container init
+    
+  - name: Install this role with latest commit   
+    shell: "ansible-container install git+https://github.com/chouseknecht/nginx-container.git,$(git rev-parse HEAD)"
+      
+  - name: Build the project
+    command: ansible-container build
+    register: output
+
+  - name: Show the build output
+    debug:
+      var: output.stdout_lines
+
