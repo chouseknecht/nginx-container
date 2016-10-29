@@ -12,11 +12,16 @@ $ cd myproject
 # Install the service
 $ ansible-container install chouseknecht.nginx-container
 ```
+## Configuration 
 
 A default configration file is placed at */etc/nginx/nginx.conf* with a simple virtual host definition listening for *http* requests on port *8000*. The best way to 
 configure nginx with your own virtual hosts and defaults is by mounting a configuration file directly to */etc/nginx/nginx.conf*.  
 
+### Logs
+
 Logs are written to */var/log/nginx* with the individual files *access.log* and *error.log* linked to */dev/stdout* and */dev/stderr* respectively.
+
+### Static content
 
 The default configuration file serves content from */usr/share/nginx/html*.
 
