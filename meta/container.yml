@@ -4,5 +4,4 @@ nginx:
      - 8000:8000
    user: nginx
    working_dir: /
-   command: ["nginx", "-g", "daemon off;"]
-   # command: ["nginx"]
+   command: ["nginx"]

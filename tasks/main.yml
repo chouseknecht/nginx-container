@@ -70,9 +70,9 @@
     state: link
     force: yes
   with_items:
-    - path: "{{ nginx_access_log }}" 
-      src: /dev/stdout 
-    - path: "{{ nginx_error_log }}"
+    - path: /var/log/nginx/access.log
+      src: /dev/stdout
+    - path: /var/log/nginx/error.log
       src: /dev/stderr
 
 - name: Copy a default nginx configuration
