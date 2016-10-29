@@ -1,7 +1,12 @@
 nginx:
-   image: "centos:7"
-   ports:
-     - 8000:8000
-   user: nginx
-   working_dir: /
-   command: ["nginx"]
+  image: "centos:7"
+  ports:
+  - 8000:8000
+  user: nginx
+  working_dir: /
+  command: ["nginx"]
+
+  # volumes:
+  # - your_volume:/var/log/nginx
+  # - your_volume:/etc/nginx/nginx.conf
+
