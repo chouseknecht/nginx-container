@@ -88,9 +88,12 @@
 
 - name: Copy default content to /var/www/nginx
   copy:
-    src: /usr/share/nginx/html
-    dest: /var/www/nginx
+    src: "/usr/share/nginx/html/{{ item }}"
+    dest: "/var/www/nginx/{{ item }}"
     remote_src: yes
     owner: nginx
     group: root
     mode: 0664
+  with_items:
+  - index.html
+  - 50x.html
