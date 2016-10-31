@@ -23,7 +23,7 @@ Logs are written to */var/log/nginx* with the individual files *access.log* and 
 
 ### Static content
 
-The default configuration file serves content from */usr/share/nginx/html*.
+Content is served from */var/www/nginx*. The default *index.html* from Nginx is copied into this directory. To serve your content, simply mount a host directory or named volume to this path.
 
 ## Requirements
 

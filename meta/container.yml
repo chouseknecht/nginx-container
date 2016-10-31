@@ -7,6 +7,7 @@ nginx:
   command: ["nginx"]
 
   # volumes:
+  # - your_volume:/var/www/nginx
   # - your_volume:/var/log/nginx
   # - your_volume:/etc/nginx/nginx.conf
 
