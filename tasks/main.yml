@@ -30,6 +30,7 @@
 - name: Create /nginx_templates
   file:
     path: /nginx_templates
+    state: directory
     owner: nginx
     group: root
     mode: 0775
