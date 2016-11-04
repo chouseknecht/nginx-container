@@ -58,7 +58,7 @@
 - name: Set permissions on /etc/nginx/nginx.conf
   file:
     path: /etc/nginx/nginx.conf
-    state: present
+    state: file 
     owner: nginx
     group: root
     mode: 0664
