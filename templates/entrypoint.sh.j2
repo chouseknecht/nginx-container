@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 if [ -d "/nginx_templates" ]; then
     # Run conf files through envsubst to template environment variables into
     # the files. `man envsubst` for help using envsubst.  

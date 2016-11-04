@@ -4,7 +4,7 @@ nginx:
   - 8000:8000
   user: nginx
   working_dir: /
-  entrypoint: [/usr/bin/entrpoint.sh]
+  entrypoint: [/usr/bin/entrypoint.sh]
   command: [nginx]
 
   # volumes:
