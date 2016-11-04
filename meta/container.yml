@@ -4,10 +4,11 @@ nginx:
   - 8000:8000
   user: nginx
   working_dir: /
-  command: ["nginx"]
+  entrypoint: [/usr/bin/entrpoint.sh]
+  command: [nginx]
 
   # volumes:
   # - your_volume:/var/www/nginx
   # - your_volume:/var/log/nginx
-  # - your_volume:/etc/nginx/nginx.conf
+  # - your_volume:/nginx_templates
 

@@ -15,12 +15,32 @@
     state: installed
     enablerepo: nginx
 
+- name: Install gettext
+  yum:
+    name: gettext
+    state: present
+
 - name: Create nginx user
   user:
     name: nginx
     uid: 1000
     group: root
     createhome: no
+
+- name: Create /nginx_templates
+  file:
+    path: /nginx_templates
+    owner: nginx
+    group: root
+    mode: 0775
+
+- name: Copy entrypoint script
+  template:
+    src: entrypoint.sh.j2
+    dest: /usr/bin/entrypoint.sh
+    owner: root
+    group: root
+    mode: 0775
 
 - name: Set permissions on /var/log/nginx and /var/www/nginx
   file:
@@ -78,10 +98,10 @@
     - path: /var/log/nginx/error.log
       src: /dev/stderr
 
-- name: Create default nginx configuration
+- name: Copy the nginx configuration
   template:
     src: nginx.conf.j2
-    dest: "{{ nginx_conf_file_path }}" 
+    dest: /nginx_templates/nginx.conf 
     owner: root 
     group: root
     mode: 0664
