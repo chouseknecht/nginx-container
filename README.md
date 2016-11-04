@@ -14,9 +14,9 @@ $ ansible-container install chouseknecht.nginx-container
 ```
 ## Configuration 
 
-Configuration files are placed in */nginx_templates*, and on startup they are passed through `envsubst` and copied to */etc/nginx*. This allows environment variables to be substituted into the configuration files. Otherwise, there is no way to reference environment variables from within the configuration files. See the [*envsubst* man page](https://www.gnu.org/software/gettext/manual/html_node/envsubst-Invocation.html) for information on how the substitution works.
+Configuration files are placed in */nginx_templates*, and on startup they are passed through `envsubst` and copied to */etc/nginx*. This allows environment variables to be substituted into the configuration files. Otherwise, there is no way to reference environment variables from within them. See the [*envsubst* man page](https://www.gnu.org/software/gettext/manual/html_node/envsubst-Invocation.html) for information on how the substitution works.
 
-A default configration file is placed at */nginx/templates/nginx.conf* with a simple virtual host definition listening for *http* requests on port *8000*. The best way to configure nginx with your own virtual hosts is to copy your configuration to the same path or mount a volume containing configuration files to */nginx/templates*. 
+A default configration file is placed at */nginx/templates/nginx.conf* with a simple virtual host definition listening for *http* requests on port *8000*. The best way to configure nginx with your own virtual hosts is to copy your configuration files to the same path or mount a volume containing configuration files to */nginx/templates*. 
 
 ### Logs
 
