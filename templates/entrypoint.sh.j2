@@ -1,9 +1,5 @@
 #!/bin/bash
 
-#!/bin/bash
-
-set -x
-
 if [ -d "/nginx_templates" ]; then
     # Run conf files through envsubst to template environment variables into
     # the files. `man envsubst` for help using envsubst.
@@ -15,11 +11,13 @@ if [ -d "/nginx_templates" ]; then
            vars+=("\$${name[0]}")
        fi
     done
+    substitute="${vars[@]}"
+    echo "Substitute ${substitute} in nginx configuration"
     for file in /nginx_templates/*
     do
         echo "Copying ${file} to /etc/nginx"
         f=$(basename ${file})
-        envsubst '${vars[@]}' < ${file} > /etc/nginx/${f}
+        envsubst "${substitute}" < ${file} > /etc/nginx/${f}
     done
 fi
 
