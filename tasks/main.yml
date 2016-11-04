@@ -43,16 +43,25 @@
     group: root
     mode: 0775
 
-- name: Set permissions on /var/log/nginx and /var/www/nginx
+- name: Set permissions on /var/log/nginx, /var/www/nginx, /etc/nginx
   file:
     path: "{{ item }}" 
     state: directory
-    owner: root
+    owner: nginx 
     group: root
     mode: 0775
   with_items:
   - /var/log/nginx
   - /var/www/nginx
+  - /etc/nginx
+
+- name: Set permissions on /etc/nginx/nginx.conf
+  file:
+    path: /etc/nginx/nginx.conf
+    state: present
+    owner: nginx
+    group: root
+    mode: 0664
 
 - name: Remove pid file, if it exists
   file:
