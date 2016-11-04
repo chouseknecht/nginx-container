@@ -16,6 +16,8 @@ $ ansible-container install chouseknecht.nginx-container
 
 Configuration files are placed in */nginx_templates*, and on startup they are passed through `envsubst` and copied to */etc/nginx*. This allows environment variables to be substituted into the configuration files. Otherwise, there is no way to reference environment variables from within them. See the [*envsubst* man page](https://www.gnu.org/software/gettext/manual/html_node/envsubst-Invocation.html) for information on how the substitution works.
 
+Because `envsubst` will attempt to substitute all variables that start with *$*, set the value of ENVSUBST_MATCH in *container.yml* so that it will only substitute variables where the name contains this value. For example, if you set it to *SYMF*, then only variables that contain *SYMF* in the name will be substitued. All other *$* variables found in the Nginx configuration files will be left untouched.  
+
 A default configration file is placed at */nginx/templates/nginx.conf* with a simple virtual host definition listening for *http* requests on port *8000*. The best way to configure nginx with your own virtual hosts is to copy your configuration files to the same path or mount a volume containing configuration files to */nginx/templates*. 
 
 ### Logs

@@ -7,6 +7,10 @@ nginx:
   entrypoint: [/usr/bin/entrypoint.sh]
   command: [nginx]
 
+  # In files found in /nginx_templates/*, substitute variables that start with a prefix
+  #environment:
+  #- ENVSUBST_PREFIX=
+
   # volumes:
   # - your_volume:/var/www/nginx
   # - your_volume:/var/log/nginx
